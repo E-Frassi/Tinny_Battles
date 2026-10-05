@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://l36lwhioq76t"]
+
+[ext_resource type="Script" uid="uid://odblci47lg2f" path="res://Scripts/alvo.gd" id="1_5rmji"]
+[ext_resource type="Texture2D" uid="uid://n7e7vse27n3c" path="res://Elementos/arte/tilemap_packed.png" id="1_jqvq3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rmji"]
+atlas = ExtResource("1_jqvq3")
+region = Rect2(256, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o2pr"]
+atlas = ExtResource("1_jqvq3")
+region = Rect2(272, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xx3bu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rmji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o2pr")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hllmi"]
+size = Vector2(14, 16)
+
+[node name="Alvo" type="Area2D" unique_id=3784117]
+script = ExtResource("1_5rmji")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=163404199]
+sprite_frames = SubResource("SpriteFrames_xx3bu")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=698332319]
+shape = SubResource("RectangleShape2D_hllmi")
+
+[node name="Label" type="Label" parent="." unique_id=1014142981]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Parabens!!
+"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
